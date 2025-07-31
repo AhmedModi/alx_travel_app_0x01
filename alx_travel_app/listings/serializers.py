@@ -1,9 +1,14 @@
+# listings/serializers.py
+
 from rest_framework import serializers
+from .models import Listing, Booking
 
-class ListingSerializer(serializers.Serializer):
-    title = serializers.CharField()
+class ListingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Listing
+        fields = '__all__'
 
-    def validate_title(self, value):
-        if not value:
-            raise serializers.ValidationError("Title is required.")
-        return value
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = '__all__'
